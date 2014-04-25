@@ -36,6 +36,11 @@ class Pootlepress_FontAwesome_Menu {
 	public $version;
 	private $file;
 
+    public $mobileMenuIconPos;
+    public $mobileMenuIconColor;
+    public $mobileMenuIconSize;
+    public $mobileMenuLabelRemove;
+
 	/**
 	 * Constructor.
 	 * @param string $file The base file of the plugin.
@@ -59,11 +64,16 @@ class Pootlepress_FontAwesome_Menu {
 		add_action( 'get_header', array( &$this, 'get_header' ) , 1000);
 
 		// Load for a stylesheet for the selected style and load it.
-		add_action( 'wp_enqueue_scripts', array( &$this, 'load_stylesheet' ) );
+		//add_action( 'wp_enqueue_scripts', array( &$this, 'load_stylesheet' ) );
 
-        add_action('wp_head', array(&$this, 'option_css'));
+        add_action('wp_head', array(&$this, 'option_css'), 100); // hook it behind mobile mnu manager hook, so can overwrite its style
 
         add_filter( 'wp_nav_menu_args', array(&$this, 'filter_widget_menu_args') );
+
+        $this->mobileMenuIconPos = get_option('pootlepress-fa-menu-mobile-menu-icon-pos', 'Left of nav label');
+        $this->mobileMenuIconColor = get_option('pootlepress-fa-menu-mobile-menu-icon-color', '#000000');
+        $this->mobileMenuIconSize = get_option('pootlepress-fa-menu-mobile-menu-icon-size', 'Large');
+        $this->mobileMenuLabelRemove = get_option('pootlepress-fa-menu-mobile-menu-label-remove', 'false');
 
 	} // End __construct()
 
@@ -267,20 +277,51 @@ class Pootlepress_FontAwesome_Menu {
             'std' => '#000000',
             'type' => 'color'
         );
+
+        //
+        // mobile menu
+        //
+        $o[] = array(
+            "id" => "pootlepress-fa-menu-mobile-menu-icon-pos",
+            "name" => __( 'Mobile Menu Icon Position', 'pootlepress-fontawesome-menu' ),
+            "desc" => __( 'Mobile Menu Icon Position', 'pootlepress-fontawesome-menu' ),
+            "type" => "select",
+            "options" => array(
+                "Left of nav label",
+                "Right of nav label")
+        );
+        $o[] = array(
+            "id" => "pootlepress-fa-menu-mobile-menu-icon-size",
+            "name" => __( 'Size of Mobile Menu Icons', 'pootlepress-fontawesome-menu' ),
+            "desc" => __( 'Size of Mobile Menu Icons', 'pootlepress-fontawesome-menu' ),
+            "type" => "select",
+            "options" => array(
+                "Large",
+                "2x",
+                "3x",
+                "4x"
+            )
+        );
+        $o[] = array(
+            'id' => 'pootlepress-fa-menu-mobile-menu-label-remove',
+            'name' => __( 'Remove navigation labels on Mobile Menu?', 'pootlepress-fontawesome-menu' ),
+            'desc' => __( 'Remove navigation labels on Mobile Menu?', 'pootlepress-fontawesome-menu' ),
+            'std' => 'false',
+            'type' => 'checkbox'
+        );
+        $o[] =	array(
+            'id' => 'pootlepress-fa-menu-mobile-menu-icon-color',
+            'name' => 'Choose color of Mobile Menu icons',
+            'desc' => 'Choose color of Mobile Menu icons',
+            'std' => '#ffffff',
+            'type' => 'color'
+        );
         return $o;
 	} // End add_theme_options()
 
 
 
     public function option_css() {
-
-//        $enable = get_option('pootlepress-fontawesome-menu-enable', 'true');
-//        if ($enable == '') {
-//            $enable = 'true';
-//        }
-//
-//        if ($enable == 'true') {
-//            $css = '';
 
         $primaryNavIconPos = get_option('pootlepress-fa-menu-primary-nav-icon-pos', 'Left of nav label');
         $primaryNavIconColor = get_option('pootlepress-fa-menu-primary-nav-icon-color', '#000000');
@@ -493,6 +534,54 @@ class Pootlepress_FontAwesome_Menu {
         $widgetNavIconCss .= " color: " . $widgetNavIconColor . ";";
         $widgetNavIconCss .= " text-decoration: initial;";
 
+        //
+        // Mobile Menu
+        //
+        $mobileMenuIconCss = 'text-decoration: none; ';
+        switch ($this->mobileMenuIconPos) {
+            case 'Left of nav label':
+                $mobileMenuIconCss .= "float: left; margin-right: 5px; line-height: inherit;";
+                break;
+            case 'Right of nav label':
+                $mobileMenuIconCss .= "float: right; margin-left: 5px; line-height: inherit;";
+                break;
+            default:
+                $mobileMenuIconCss .= "float: left; margin-right: 5px; line-height: inherit;";
+                break;
+        }
+
+        $mobileMenuLinkLineHeight = '';
+        switch ($this->mobileMenuIconSize) {
+            case 'Large':
+                $mobileMenuLinkLineHeight = '1.3333333333333333em';
+                break;
+            case '2x':
+                $mobileMenuLinkLineHeight = '2em';
+                break;
+            case '3x':
+                $mobileMenuLinkLineHeight = '3em';
+                break;
+            case '4x':
+                $mobileMenuLinkLineHeight = '4em';
+                break;
+            default:
+                $mobileMenuLinkLineHeight = '1.3333333333333333em';
+                break;
+        }
+
+        $mobileMenuLinkCss = '';
+        $mobileMenuLinkCss .= " line-height: " . $mobileMenuLinkLineHeight . " !important;";
+        $mobileMenuLinkCss .= " height: " . $mobileMenuLinkLineHeight . " !important;";
+
+        $mobileMenuIconFontSize = $mobileMenuLinkLineHeight;
+        $mobileMenuIconCss .= " font-size: " . $mobileMenuIconFontSize . " !important;";
+        $mobileMenuIconCss .= " color: " . $this->mobileMenuIconColor . " !important;";
+
+        $mobileMenuLabelCss = '';
+        if ($this->mobileMenuLabelRemove == 'true') {
+            $mobileMenuLabelCss .= "display: none;";
+        }
+
         $css = "#main-nav > li > a {\n";
         $css .= "\t" . $primaryNavLinkCss . "\n";
         $css .= "}\n";
@@ -533,8 +622,29 @@ class Pootlepress_FontAwesome_Menu {
         $css .= "\t" . $widgetNavIconCss . "\n";
         $css .= "}\n";
 
+        //
+        // Begin Mobile Menu
+        //
+        $css .= "@media only screen and (max-width: 767px) {\n";
+
+        $css .= "#navigation ul.nav li a, \n" .
+         "#navigation ul.nav li.current-menu-item a, \n" .
+         "#navigation ul.nav li.current-menu-ancestor a, \n" .
+         "#navigation ul li.menu-item:not(.current-menu-item) a {\n";
+        $css .= "\t" . $mobileMenuLinkCss . ";\n";
+        $css .= "}\n";
+
+        $css .= "#navigation ul.nav li > a > i {\n";
+        $css .= "\t" . $mobileMenuIconCss . ";\n";
+        $css .= "}\n";
+
+        $css .= "#navigation ul.nav li > a > span {\n";
+        $css .= "\t" . $mobileMenuLabelCss . ";\n";
+        $css .= "}\n";
+
+        $css .= "}\n"; // End Mobile Menu
+
         echo "<style>".$css."</style>";
-//        }
     }
 
 	/**
@@ -627,7 +737,8 @@ class Pootlepress_FontAwesome_Menu {
 	if ( function_exists( 'has_nav_menu' ) && has_nav_menu( 'primary-menu' ) ) {
         echo '<h3>' . woo_get_menu_name( 'primary-menu' ) . '</h3>';
         wp_nav_menu( array( 'sort_column' => 'menu_order', 'container' => 'ul', 'menu_id' => 'main-nav', 'menu_class' => 'nav fl',
-            'theme_location' => 'primary-menu', 'walker' => new Pootlepress_FA_Main_Nav_Walker() ) );
+            'theme_location' => 'primary-menu', 'link_before' => '<span>', 'link_after' => '</span>',
+            'walker' => new Pootlepress_FA_Main_Nav_Walker() ) );
     } else {
         ?>
         <ul id="main-nav" class="nav fl">
@@ -655,6 +766,7 @@ class Pootlepress_FontAwesome_Menu {
                     echo '<h3 class="top-menu">' . woo_get_menu_name( 'top-menu' ) . '</h3>';
                     wp_nav_menu( array( 'depth' => 6, 'sort_column' => 'menu_order', 'container' => 'ul', 'menu_id' => 'top-nav',
                         'menu_class' => 'nav top-navigation fl', 'theme_location' => 'top-menu',
+                        'link_before' => '<span>', 'link_after' => '</span>',
                         'walker' => new Pootlepress_FA_Top_Nav_Walker()
                     ) );
                     ?>

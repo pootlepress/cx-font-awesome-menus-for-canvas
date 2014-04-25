@@ -179,22 +179,6 @@ class Pootlepress_FA_Main_Nav_Walker extends Walker {
             default:
                 $sizeClass = 'icon-large';
                 break;
-        }        switch ($iconSize) {
-            case 'Large':
-                $sizeClass = 'icon-large';
-                break;
-            case '2x':
-                $sizeClass = 'icon-2x';
-                break;
-            case '3x':
-                $sizeClass = 'icon-3x';
-                break;
-            case '4x':
-                $sizeClass = 'icon-4x';
-                break;
-            default:
-                $sizeClass = 'icon-large';
-                break;
         }
 
         // Add icon

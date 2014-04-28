@@ -582,7 +582,11 @@ class Pootlepress_FontAwesome_Menu {
             $mobileMenuLabelCss .= "display: none;";
         }
 
-        $css = "#main-nav > li > a {\n";
+        $css = '';
+
+        $css .= "@media only screen and (min-width: 768px) {\n";
+
+        $css .= "#main-nav > li > a {\n";
         $css .= "\t" . $primaryNavLinkCss . "\n";
         $css .= "}\n";
 
@@ -596,6 +600,8 @@ class Pootlepress_FontAwesome_Menu {
 
         $css .= "#main-nav > li ul li > a > i {\n";
         $css .= "\t" . $primaryNavSubMenuIconCss . "\n";
+        $css .= "}\n";
+
         $css .= "}\n";
 
         $css .= "#top-nav > li > a {\n";
@@ -634,7 +640,7 @@ class Pootlepress_FontAwesome_Menu {
         $css .= "\t" . $mobileMenuLinkCss . ";\n";
         $css .= "}\n";
 
-        $css .= "#navigation ul.nav li > a > i {\n";
+        $css .= "#navigation ul.nav li > a > i, #navigation ul.nav li > a > i:before {\n";
         $css .= "\t" . $mobileMenuIconCss . ";\n";
         $css .= "}\n";
 
@@ -731,7 +737,7 @@ class Pootlepress_FontAwesome_Menu {
 
             ?>
 
-        <a href="<?php echo home_url(); ?>" class="nav-home"><span><?php _e( 'Home', 'woothemes' ); ?></span></a>
+        <a href="<?php echo home_url(); ?>" class="nav-home"><i class="icon-home"></i><span><?php _e( 'Home', 'woothemes' ); ?></span></a>
 
 	<?php
 	if ( function_exists( 'has_nav_menu' ) && has_nav_menu( 'primary-menu' ) ) {

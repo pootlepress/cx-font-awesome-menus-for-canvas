@@ -1,7 +1,7 @@
 Canvas Extensions - Font Awesome Menus for Canvas
 =================================================
 
-Watch the demo here: http://www.pootlepress.com/shop
+Watch the demo here: http://www.pootlepress.com/shop/font-awesome-menus-woothemes-canvas/
 
 Get icon classes from here: http://fortawesome.github.io/Font-Awesome/3.2.1/icons/
 

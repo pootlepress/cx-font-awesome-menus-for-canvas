@@ -79,7 +79,7 @@ class Pootlepress_FA_Widget_Nav_Walker extends Walker {
         $temp = array();
         $iconClass = '';
         foreach ($classes as $class) {
-            if (strpos($class, 'icon-') !== 0) {
+            if (strpos($class, 'fa-') !== 0) {
                 $temp[] = $class;
             } else {
                 $iconClass= $class;
@@ -153,28 +153,28 @@ class Pootlepress_FA_Widget_Nav_Walker extends Walker {
         $iconSize = get_option('pootlepress-fa-menu-widget-nav-icon-size', 'Large');
         $labelRemove = get_option('pootlepress-fa-menu-widget-nav-label-remove', 'false');
 
-        $sizeClass = 'icon-large';
+        $sizeClass = 'fa-large';
         switch ($iconSize) {
             case 'Large':
-                $sizeClass = 'icon-large';
+                $sizeClass = 'fa-large';
                 break;
             case '2x':
-                $sizeClass = 'icon-2x';
+                $sizeClass = 'fa-2x';
                 break;
             case '3x':
-                $sizeClass = 'icon-3x';
+                $sizeClass = 'fa-3x';
                 break;
             case '4x':
-                $sizeClass = 'icon-4x';
+                $sizeClass = 'fa-4x';
                 break;
             default:
-                $sizeClass = 'icon-large';
+                $sizeClass = 'fa-large';
                 break;
         }
 
         // Add icon
         if ($iconClass != '') {
-            $item_output .= "<i class='" . esc_attr($iconClass . ' ' . $sizeClass) . "'></i>";
+            $item_output .= "<i class='" . esc_attr('fa ' . $iconClass . ' ' . $sizeClass) . "'></i>";
         }
 
         /** This filter is documented in wp-includes/post-template.php */

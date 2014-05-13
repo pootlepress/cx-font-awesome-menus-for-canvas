@@ -737,7 +737,7 @@ class Pootlepress_FontAwesome_Menu {
 
             ?>
 
-        <a href="<?php echo home_url(); ?>" class="nav-home"><i class="icon-home"></i><span><?php _e( 'Home', 'woothemes' ); ?></span></a>
+        <a href="<?php echo home_url(); ?>" class="nav-home"><i class="fa fa-home"></i><span><?php _e( 'Home', 'woothemes' ); ?></span></a>
 
 	<?php
 	if ( function_exists( 'has_nav_menu' ) && has_nav_menu( 'primary-menu' ) ) {

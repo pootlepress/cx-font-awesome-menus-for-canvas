@@ -14,5 +14,7 @@ Instructions
 
 Versions
 
+v1.0.1 - fix for Canvas 5.7 Font Awesome change
+
 v1.0 - initial release
 

@@ -586,19 +586,19 @@ class Pootlepress_FontAwesome_Menu {
 
         $css .= "@media only screen and (min-width: 768px) {\n";
 
-        $css .= "#main-nav > li > a {\n";
+        $css .= "#navigation ul.nav > li > a {\n";
         $css .= "\t" . $primaryNavLinkCss . "\n";
         $css .= "}\n";
 
-        $css .= "#main-nav > li > a > i {\n";
+        $css .= "#navigation ul.nav > li > a > i {\n";
         $css .= "\t" . $primaryNavIconCss . "\n";
         $css .= "}\n";
 
-        $css .= "#main-nav > li ul li > a {\n";
+        $css .= "#navigation ul.nav > li ul li > a {\n";
         $css .= "\t" . $primaryNavSubMenuLinkCss . "\n";
         $css .= "}\n";
 
-        $css .= "#main-nav > li ul li > a > i {\n";
+        $css .= "#navigation ul.nav > li ul li > a > i {\n";
         $css .= "\t" . $primaryNavSubMenuIconCss . "\n";
         $css .= "}\n";
 

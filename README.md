@@ -14,6 +14,8 @@ Instructions
 
 Versions
 
+v1.1.0 - fix large icon class, add hook check
+
 v1.0.2 - make compatible with Logo Inside Nav Canvas Extension
 
 v1.0.1 - fix for Canvas 5.7 Font Awesome change

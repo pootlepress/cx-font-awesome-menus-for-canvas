@@ -156,7 +156,7 @@ class Pootlepress_FA_Widget_Nav_Walker extends Walker {
         $sizeClass = 'fa-large';
         switch ($iconSize) {
             case 'Large':
-                $sizeClass = 'fa-large';
+                $sizeClass = 'fa-lg';
                 break;
             case '2x':
                 $sizeClass = 'fa-2x';
@@ -168,7 +168,7 @@ class Pootlepress_FA_Widget_Nav_Walker extends Walker {
                 $sizeClass = 'fa-4x';
                 break;
             default:
-                $sizeClass = 'fa-large';
+                $sizeClass = 'fa-lg';
                 break;
         }
 

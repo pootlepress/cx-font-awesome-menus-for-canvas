@@ -470,7 +470,10 @@ class Pootlepress_FontAwesome_Menu {
         }
 
         $topNavLinkCss = '';
-        $topNavLinkCss .= " line-height: " . $topNavLinkLineHeight . " !important;";
+        if (class_exists('Pootlepress_Top_Nav_Manager') && $topNavIconSize == 'Large' ) {
+        } else {
+            $topNavLinkCss .= " line-height: " . $topNavLinkLineHeight . " !important;";
+        }
 
         //
         // Top Nav Sub Menu

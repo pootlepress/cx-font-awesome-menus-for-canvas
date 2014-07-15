@@ -10,6 +10,8 @@ Instructions
 
 Versions
 
+v1.2 - compatibility with Top Nav Manager Canvas Extension
+
 v1.1.0 - fix large icon class, add hook check
 
 v1.0.2 - make compatible with Logo Inside Nav Canvas Extension

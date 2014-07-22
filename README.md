@@ -10,6 +10,8 @@ Instructions
 
 Versions
 
+v1.3 - ability to update within WordPress
+
 v1.2 - compatibility with Top Nav Manager Canvas Extension
 
 v1.1.0 - fix large icon class, add hook check

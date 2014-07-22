@@ -3,7 +3,7 @@
 Plugin Name: Canvas Extension - FontAwesome Menu
 Plugin URI: http://pootlepress.com/
 Description: An extension for WooThemes Canvas that allow you to customize menu with FontAwesome icons.
-Version: 1.2
+Version: 1.3
 Author: PootlePress
 Author URI: http://pootlepress.com/
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ require_once('classes/class-widget-nav-walker.php');
 require_once( 'classes/class-pootlepress-updater.php');
 
 $GLOBALS['pootlepress_fontawesome_menu'] = new Pootlepress_FontAwesome_Menu( __FILE__ );
-$GLOBALS['pootlepress_fontawesome_menu']->version = '1.2';
+$GLOBALS['pootlepress_fontawesome_menu']->version = '1.3';
 
 add_action('init', 'pp_fam_updater');
 function pp_fam_updater()

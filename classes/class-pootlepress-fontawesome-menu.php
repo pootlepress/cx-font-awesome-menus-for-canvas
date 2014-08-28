@@ -740,6 +740,7 @@ class Pootlepress_FontAwesome_Menu {
 
             ?>
 
+        <div class="primary-nav-container">
         <a href="<?php echo home_url(); ?>" class="nav-home"><i class="fa fa-home"></i><span><?php _e( 'Home', 'woothemes' ); ?></span></a>
 
 	<?php
@@ -763,6 +764,7 @@ class Pootlepress_FontAwesome_Menu {
         </ul><!-- /#nav -->
     <?php }
 
+        ?></div><?php
         //woo_nav_after();
     } // End woo_nav_custom()
 

@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 require_once( 'pootlepress-fontawesome-menu-functions.php' );
 require_once( 'classes/class-pootlepress-fontawesome-menu.php' );
+require_once( 'classes/class-pootlepress-canvas-options.php' );
 require_once('classes/class-main-nav-walker.php');
 require_once('classes/class-top-nav-walker.php');
 require_once('classes/class-widget-nav-walker.php');

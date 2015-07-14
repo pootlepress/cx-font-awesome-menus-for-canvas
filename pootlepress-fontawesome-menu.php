@@ -52,7 +52,7 @@ class PP_CX_Font_Awesome_Menu_API_Manager {
 	 * Self Upgrade Values
 	 */
 	// Base URL to the remote upgrade API Manager server. If not set then the Author URI is used.
-	public $upgrade_url = 'http://tl/';
+	public $upgrade_url = 'http://pootle/';
 
 	/**
 	 * @var string
@@ -166,7 +166,7 @@ class PP_CX_Font_Awesome_Menu_API_Manager {
 			 * Software Product ID is the product title string
 			 * This value must be unique, and it must match the API tab for the product in WooCommerce
 			 */
-			$this->ame_software_product_id = 'API Manager Example';
+			$this->ame_software_product_id = 'Canvas Extension - FontAwesome Menu';
 
 			/**
 			 * Set all data defaults here
@@ -185,8 +185,8 @@ class PP_CX_Font_Awesome_Menu_API_Manager {
 			$this->ame_deactivate_checkbox 			= 'am_deactivate_example_checkbox';
 			$this->ame_activation_tab_key 			= 'pp_cx_font_awesome_menu_dashboard';
 			$this->ame_deactivation_tab_key 		= 'pp_cx_font_awesome_menu_deactivation';
-			$this->ame_settings_menu_title 			= 'API Manager Example';
-			$this->ame_settings_title 				= 'API Manager Example';
+			$this->ame_settings_menu_title 			= 'Canvas Extension - FontAwesome Menu';
+			$this->ame_settings_title 				= 'Canvas Extension - FontAwesome Menu';
 			$this->ame_menu_tab_activation_title 	= __( 'License Activation', 'api-manager-example' );
 			$this->ame_menu_tab_deactivation_title 	= __( 'License Deactivation', 'api-manager-example' );
 
@@ -223,7 +223,6 @@ class PP_CX_Font_Awesome_Menu_API_Manager {
 			require_once( plugin_dir_path( __FILE__ ) . 'am/admin/class-wc-api-manager-menu.php' );
 
 			$options = get_option( $this->ame_data_key );
-
 			/**
 			 * Check for software updates
 			 */
@@ -398,7 +397,7 @@ class PP_CX_Font_Awesome_Menu_API_Manager {
 		<?php if ( ! current_user_can( 'manage_options' ) ) return; ?>
 		<?php if ( isset( $_GET['page'] ) && 'pp_cx_font_awesome_menu_dashboard' == $_GET['page'] ) return; ?>
 		<div id="message" class="error">
-			<p><?php printf( __( 'The API Manager Example API License Key has not been activated, so the plugin is inactive! %sClick here%s to activate the license key and the plugin.', 'api-manager-example' ), '<a href="' . esc_url( admin_url( 'options-general.php?page=pp_cx_font_awesome_menu_dashboard' ) ) . '">', '</a>' ); ?></p>
+			<p><?php printf( __( 'Canvas Extension - FontAwesome Menu API License Key has not been activated, so the plugin is inactive! %sClick here%s to activate the license key and the plugin.', 'api-manager-example' ), '<a href="' . esc_url( admin_url( 'options-general.php?page=pp_cx_font_awesome_menu_dashboard' ) ) . '">', '</a>' ); ?></p>
 		</div>
 	<?php
 	}
